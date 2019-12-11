@@ -1,0 +1,48 @@
+{
+  "name": "kyouko",
+  "version": "0.0.1",
+  "description": "the Machine video dubbing solution",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder build"
+  },
+  "author": "Fungus-Light",
+  "license": "Apache 2.0",
+  "devDependencies": {
+    "electron": "^6.0.12"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "baidu-aip-sdk": "^2.4.4"
+  },
+  "build": {
+    "productName": "Kyouko",
+    "appId": "com.MOTTeam.Kyouko",
+    "copyright": "Copyright 2019 Fungus-Light",
+    "directories": {
+      "output": "./dist"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "./logo.ico",
+      "installerHeaderIcon": "./logo.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Kyouko"
+    },
+    "win": {
+      "icon": "./logo.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "ia32"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Kyouko-配音工具-当前无活动工程</title>
+  <link rel="stylesheet" href="./libs/themes/material.css">
+  <link rel="stylesheet" href="src/css/main.css">
+</head>
+
+<body>
+  <x-menubar style="background-color: rgb(235, 238, 241);">
+    <x-menuitem>
+      <x-label>文件</x-label>
+
+      <x-menu>
+
+        <x-menuitem id="new-project">
+          <x-label>新建工程</x-label>
+          <x-shortcut value="Control+N"></x-shortcut>
+        </x-menuitem>
+
+        <x-menuitem id="open-project">
+          <x-label>打开工程</x-label>
+          <x-shortcut value="Control+O"></x-shortcut>
+        </x-menuitem>
+
+        <hr>
+
+        <x-menuitem id="SaveProject">
+          <x-label>保存工程</x-label>
+          <x-shortcut value="Control+S"></x-shortcut>
+        </x-menuitem>
+
+        <x-menuitem id="SaveAsProject">
+          <x-label>保存为</x-label>
+          <x-shortcut value="Control+Shift+S"></x-shortcut>
+        </x-menuitem>
+
+        <x-menuitem id="quit-app">
+          <x-label>退出程序</x-label>
+          <x-shortcut value="Control+q"></x-shortcut>
+        </x-menuitem>
+      </x-menu>
+    </x-menuitem>
+
+    <x-menuitem>
+      <x-label>帮助</x-label>
+
+      <x-menu>
+        <x-menuitem class="help-doc">
+          <x-icon name="help"></x-icon>
+          <x-label>帮助文档</x-label>
+        </x-menuitem>
+
+        <x-menuitem id="view-electron">
+          <x-label>electron官网</x-label>
+        </x-menuitem>
+
+        <x-menuitem id="view-code">
+          <x-label>项目源码</x-label>
+        </x-menuitem>
+
+        <!-- <x-menuitem>
+          <x-label>检查更新</x-label>
+        </x-menuitem> -->
+      </x-menu>
+    </x-menuitem>
+
+  </x-menubar>
+
+  <!--left-->
+  <div class="up">
+    <div class="left-side">
+      <div class="oneline"></div>
+      <x-buttons tracking="-1" style="margin: auto;background-color: aliceblue;">
+        <x-button id="newItemBtn" style="background-color: aliceblue;">
+          <x-box>
+            <x-icon name="add"></x-icon>
+            <x-label>新段落</x-label>
+          </x-box>
+        </x-button>
+
+        <!-- <x-button id="test-add" style="background-color: aliceblue;">
+          <x-box>
+            <x-icon name="add"></x-icon>
+            <x-label>新段落(Test)</x-label>
+          </x-box>
+        </x-button> -->
+
+        <x-button disabled style="background-color: aliceblue;opacity: 0;">
+        </x-button>
+        <x-button id="refresh-it-btn" style="background-color: aliceblue;">
+          <x-box>
+            <x-icon name="refresh"></x-icon>
+            <x-label>刷新</x-label>
+          </x-box>
+        </x-button>
+      </x-buttons>
+      <div class="oneline"></div>
+      <hr>
+
+      <div class="left-list">
+        <div id="list-renderer" class="under-go">
+
+        </div>
+
+      </div>
+    </div>
+    <div class="mid-side"></div>
+    <!--right-->
+    <div class="right-side">
+      <h2 id="e-title" contenteditable=false style="margin: 10px ;color: rgb(23, 95, 153);-webkit-user-select: none;">第一段</h2>
+      <hr>
+      <div class="right-content" style="overflow: scroll;height: 75%;">
+        <h4 style="font-weight: bold;color: rgb(23, 95, 153);margin: 5px;-webkit-user-select: none;">简述</h4>
+        <x-textarea id="e-description"
+          style="background-color: aliceblue; opacity: 1;margin: auto;padding: 0;width:98%;" value="开场白" disabled>
+        </x-textarea>
+        </x-textarea>
+        <h4 style="font-weight: bold;color: rgb(23, 95, 153);margin: 5px;-webkit-user-select: none;">内容</h4>
+        <x-textarea id="e-content" style="background-color: aliceblue; opacity: 1;margin: auto;padding: 0;width:98%;"
+          value="大家好，我是Fungus light." disabled></x-textarea>
+        <h4 style="font-weight: bold;color: rgb(23, 95, 153);margin: 5px;-webkit-user-select: none;">参数</h4>
+
+        <div style="width:90%;float: left; padding: 1vw;">
+          <div style="width: 2%;float:left;opacity: 0;">1</div>
+          <div style="width: 25%;float: left;">
+            <x-select id="e-platform" skin="flat" disabled>
+              <x-menu>
+                <x-menuitem value="0">
+                  <x-label>平台选择</x-label>
+                </x-menuitem>
+                <hr>
+                <x-menuitem value="1" toggled>
+                  <x-label>百度</x-label>
+                </x-menuitem>
+
+                <x-menuitem value="2">
+                  <x-label>有道</x-label>
+                </x-menuitem>
+              </x-menu>
+            </x-select>
+          </div>
+          <div style="width: 25%;float: left;">
+            <x-select id="e-speaker" skin="flat" disabled>
+              <x-menu>
+                <x-menuitem value="0">
+                  <x-label>声音选择</x-label>
+                </x-menuitem>
+                <hr>
+                <x-menuitem value="1" toggled>
+                  <x-label>男</x-label>
+                </x-menuitem>
+
+                <x-menuitem value="2">
+                  <x-label>女</x-label>
+                </x-menuitem>
+              </x-menu>
+            </x-select>
+          </div>
+        </div>
+
+        <div style="float: left;width: 90%; padding: 1vw;">
+
+          <div style="width: 2%;float:left;opacity: 0;">1</div>
+          <div style="width: 10%;float:left;-webkit-user-select: none;">语速 </div>
+          <div style="width: 2%;float:left;opacity: 0;">1</div>
+          <x-numberinput id="e-speed" disabled value="5" min="0" max="15"
+            style="width: 25%;float:left;background-color: aliceblue;">
+            <x-stepper disabled="decrement"></x-stepper>
+          </x-numberinput>
+        </div>
+
+        <div style="float: left;width: 90%; padding: 1vw;">
+
+          <div style="width: 2%;float:left;opacity: 0;">1</div>
+          <div style="width: 10%;float:left;-webkit-user-select: none;">音调 </div>
+          <div style="width: 2%;float:left;opacity: 0;">1</div>
+          <x-numberinput id="e-tune" disabled value="5" min="0" max="15"
+            style="width: 25%;float:left;background-color: aliceblue;">
+            <x-stepper disabled="decrement"></x-stepper>
+          </x-numberinput>
+        </div>
+
+
+        <div style="float: left;width: 90%; padding: 1vw;">
+
+          <div style="width: 2%;float:left;opacity: 0;">1</div>
+          <div style="width: 10%;float:left;-webkit-user-select: none;">音量 </div>
+          <div style="width: 2%;float:left;opacity: 0;">1</div>
+          <x-numberinput id="e-volum" disabled value="5" min="0" max="15"
+            style="width: 25%;float:left;background-color: aliceblue;">
+            <x-stepper disabled="decrement"></x-stepper>
+          </x-numberinput>
+        </div>
+      </div>
+      <hr>
+      <div class="btn-group" style="margin: auto;padding: 10px;" centered>
+        <x-button id="e-diaedit-btn" disabled style="float:left;background-color: aliceblue;">
+          <x-box>
+            <x-icon name="done"></x-icon>
+            <x-label>完成</x-label>
+          </x-box>
+        </x-button>
+
+        <x-button disabled style="float:left;opacity:0;">
+        </x-button>
+
+        <x-button id="e-edit-btn" style="float:left;background-color: aliceblue;">
+          <x-box>
+            <x-icon name="edit"></x-icon>
+            <x-label>编辑</x-label>
+          </x-box>
+        </x-button>
+        <x-button disabled style="float:left;opacity:0;">
+        </x-button>
+        <x-button id="try-listen" style="float:left;background-color: aliceblue;">
+          <x-box>
+            <x-icon name="headset"></x-icon>
+            <x-label>试听</x-label>
+          </x-box>
+
+        </x-button>
+        <x-button disabled style="float:left;opacity:0;">
+        </x-button>
+        <x-button style="float:left;background-color: aliceblue;">
+          <x-box>
+            <x-icon name="save"></x-icon>
+            <x-label>生成音频</x-label>
+          </x-box>
+        </x-button>
+      </div>
+
+    </div>
+  </div>
+
+  <!--分割线横向-->
+  <div style="height: 0.5vh;width: 100vw; float: left; background-color: rgb(84, 114, 160);"></div>
+
+  <!--页底栏-->
+  <div class="footer">
+
+    <!--设置按钮-->
+    <x-button skin="flat" style="--primary-color:rgb(17, 70, 114); float: left;">
+      <x-icon name="settings"></x-icon>
+
+      <!--设置栏位-->
+      <dialog id="setting">
+
+          <x-notification id="notification" timeout="1000"></x-notification>
+        <h3 style="margin: 10px ;color: rgb(23, 95, 153);">配置项</h3>
+        <hr>
+        <!--具体设置区域-->
+        <div style="height: 82%;overflow: scroll;">
+
+          <!--百度语音-->
+          <h4 style="font-weight: bold;color: rgb(23, 95, 153);margin: 5px;">百度云语音合成API</h4>
+          <x-input skin="flat" id="baidu-app-id">
+            <x-label>app-id</x-label>
+          </x-input>
+          <x-input skin="flat" id="baidu-app-key">
+            <x-label>app-key</x-label>
+          </x-input>
+          <x-input skin="flat" id="baidu-secret-key">
+            <x-label>secret-key</x-label>
+          </x-input>
+          <br>
+
+          <!-- <h4 style="font-weight: bold;color: rgb(23, 95, 153);margin: 5px;">Azure语音合成API</h4>
+          <x-input skin="flat">
+            <x-label>app-key</x-label>
+          </x-input>
+          <x-input skin="flat">
+            <x-label>securety-key</x-label>
+          </x-input>
+          <br> -->
+
+          <h4 style="font-weight: bold;color: rgb(23, 95, 153);margin: 5px;">有道云智能语音合成服务API</h4>
+          <x-input skin="flat" id="youdao-app-key">
+            <x-label>app-key</x-label>
+          </x-input>
+          <x-input skin="flat" id="youdao-secret-key">
+            <x-label>securety-key</x-label>
+          </x-input>
+          <br>
+
+          <h4 style="font-weight: bold;color: rgb(23, 95, 153);margin: 5px;">谷歌语音(无需梯子)，基于浏览器</h4>
+          <x-box style="margin: 0 2vw;">
+            <x-switch id="isGoogleOn"></x-switch>
+            <x-label for="isGoogleOn" id="label-1">
+              <x-box vertical>
+                <span style="color: rgb(23, 95, 153);font-weight: bold;">启用（不稳定）</span>
+              </x-box>
+            </x-label>
+          </x-box>
+          <br>
+
+          <h4 style="font-weight: bold;color: rgb(23, 95, 153);margin: 5px;">默认参数</h4>
+          <div style="width:90%;float: left; padding: 1vw;">
+            <div style="width: 2%;float:left;opacity: 0;">1</div>
+            <div style="width: 25%;float: left;">
+              <x-select skin="flat" id="default-platform">
+                <x-menu>
+                  <x-menuitem value="0">
+                    <x-label>平台选择</x-label>
+                  </x-menuitem>
+                  <hr>
+                  <x-menuitem value="1" toggled>
+                    <x-label>百度</x-label>
+                  </x-menuitem>
+
+                  <x-menuitem value="2">
+                    <x-label>有道</x-label>
+                  </x-menuitem>
+                </x-menu>
+              </x-select>
+            </div>
+
+            <div style="width: 25%;float: left;">
+              <x-select skin="flat" id="default-speaker">
+                <x-menu>
+                  <x-menuitem value="0">
+                    <x-label>声音选择</x-label>
+                  </x-menuitem>
+                  <hr>
+                  <x-menuitem value="1" toggled>
+                    <x-label>男</x-label>
+                  </x-menuitem>
+
+                  <x-menuitem value="2">
+                    <x-label>女</x-label>
+                  </x-menuitem>
+                </x-menu>
+              </x-select>
+            </div>
+          </div>
+
+          <div style="float: left;width: 90%; padding: 1vw;">
+
+            <div style="width: 2%;float:left;opacity: 0;">1</div>
+            <div style="width: 10%;float:left; color: rgb(23, 95, 153); font-weight: bold;">语速 </div>
+            <div style="width: 2%;float:left;opacity: 0;">1</div>
+            <x-numberinput id="default-speed" value="5" min="0" max="15"
+              style="width: 25%;float:left;background-color: aliceblue;">
+              <x-stepper disabled="decrement"></x-stepper>
+            </x-numberinput>
+          </div>
+
+          <div style="float: left;width: 90%; padding: 1vw;">
+
+            <div style="width: 2%;float:left;opacity: 0;">1</div>
+            <div style="width: 10%;float:left; color: rgb(23, 95, 153); font-weight: bold;">音调 </div>
+            <div style="width: 2%;float:left;opacity: 0;">1</div>
+            <x-numberinput id="default-tune" value="5" min="0" max="15"
+              style="width: 25%;float:left;background-color: aliceblue;">
+              <x-stepper disabled="decrement"></x-stepper>
+            </x-numberinput>
+          </div>
+
+
+          <div style="float: left;width: 90%; padding: 1vw;">
+
+            <div style="width: 2%;float:left;opacity: 0;">1</div>
+            <div style="width: 10%;float:left; color: rgb(23, 95, 153); font-weight: bold;">音量 </div>
+            <div style="width: 2%;float:left;opacity: 0;">1</div>
+            <x-numberinput id="default-volume" value="5" min="0" max="15"
+              style="width: 25%;float:left;background-color: aliceblue;">
+              <x-stepper disabled="decrement"></x-stepper>
+            </x-numberinput>
+          </div>
+        </div>
+        <hr>
+
+        <div class="btn-group" style="margin: auto;padding: 10px;vertical-align: auto;" centered>
+          <x-button id="save-settings" style="float:left;background-color: aliceblue;">
+            <x-box>
+              <x-icon name="save"></x-icon>
+              <x-label>保存设置</x-label>
+            </x-box>
+          </x-button>
+          <x-button disabled style="float:left;opacity:0;">
+          </x-button>
+          <x-button style="float:left;background-color: aliceblue;">
+            <x-box>
+              <x-icon name="replay"></x-icon>
+              <x-label>恢复默认</x-label>
+            </x-box>
+          </x-button>
+          <x-button disabled style="float:left;opacity:0;">
+          </x-button>
+          <x-button onclick="this.closest('dialog').close()" style="float:left;background-color: aliceblue;">
+            <x-box>
+              <x-icon name="close"></x-icon>
+              <x-label>关闭设置</x-label>
+            </x-box>
+          </x-button>
+        </div>
+      </dialog>
+    </x-button>
+
+    <!--帮助按钮，可以打开文档等-->
+    <x-button skin="flat" style="--primary-color:rgb(17, 70, 114); float: left;">
+      <x-icon name="help"></x-icon>
+      <dialog style="margin: auto;background-color: aliceblue;">
+        <main>
+          <p>Kyouko(响子)是一款整合了多家在线语音合成api的辅助应用，你可以用来为你的视频等生成配音方案。</p>
+          <br>
+          <x-button style="--primary-color:rgb(17, 70, 114);" class="help-doc">
+            <x-label>打开帮助文档</x-label>
+          </x-button>
+          <br>
+          <p>作者：Fungus-Light</p>
+          <br>
+          <a style="color: rgb(138, 201, 226);" href="#!">去关注我，催促摸鱼的我填各种坑。</a>
+          <br>
+          <p id="version-info">当前版本号：0.0.1</p>
+        </main>
+        <footer>
+          <x-button onclick="this.closest('dialog').close()">
+            <x-label>了解</x-label>
+          </x-button>
+        </footer>
+      </dialog>
+    </x-button>
+
+    <!--网络状况测试显示按钮-->
+    <x-button skin="flat" style="--primary-color:rgb(17, 70, 114); float: right;">
+      <x-icon id="online-icon" name="wifi"></x-icon>
+      <x-icon id="offline-icon" name="cancel" style="display: none;"></x-icon>
+    </x-button>
+
+  </div>
+
+  <x-notification id="sys-notification" timeout="1500"></x-notification>
+
+  <dialog id="newItemwin" style="margin: auto;background-color: aliceblue;">
+    <main style="margin: 0;">
+      <p>请输入你的标题</p>
+      <x-input id="new-title"></x-input>
+      <p>请输入你的简述</p>
+      <x-input id="new-description"></x-input>
+      <p>请输入你的内容</p>
+      <x-textarea id="new-content" style="max-width: 96%; margin:auto"></x-textarea>
+    </main>
+    <footer style="margin: auto;">
+      <x-button id="newTextItem">
+        <x-label>提交</x-label>
+      </x-button>
+      <x-button
+        onclick="$('#new-title').attr('value','');$('#new-description').attr('value','');$('#new-content').attr('value','');this.closest('dialog').close();">
+        <x-label>关闭</x-label>
+      </x-button>
+    </footer>
+  </dialog>
+
+  <dialog id="quit-warning" style="margin: auto;">
+    <main>
+      <h3>保存当前进度吗？</h3>
+      <p>未保存的进度可能丢失。</p>
+    </main>
+
+    <footer>
+      <x-buttons>
+        <x-button id="save-quit">
+          <x-label>保存退出</x-label>
+        </x-button>
+        <x-button id="force-quit">
+          <x-label>不保存退出</x-label>
+        </x-button>
+        <x-button onclick="this.closest('dialog').close();">
+          <x-label>取消</x-label>
+        </x-button>
+      </x-buttons>
+
+    </footer>
+
+  </dialog>
+
+  <dialog id="FileExist-warning" style="margin: auto;">
+      <main>
+        <h3>保存当前进度吗？</h3>
+        <p>当前有打开的文件！未保存的进度可能丢失。</p>
+      </main>
+      <footer>
+        <x-buttons id="continue-group" param="-1">
+          <x-button id="continue-save">
+            <x-label>保存继续</x-label>
+          </x-button>
+          <x-button id="continue-nosave">
+            <x-label>不保存继续</x-label>
+          </x-button>
+          <x-button onclick="this.closest('dialog').close();">
+            <x-label>取消</x-label>
+          </x-button>
+        </x-buttons>
+
+
+      </footer>
+  </dialog>
+
+  <dialog id="listen-bar" style="margin: auto;background-color: aliceblue; border-color: blueviolet; ">
+    <main>
+      <p>试听效果</p>
+      <br>
+      <audio id="test-player" controls style="width: 60%;margin: auto;">
+        <!-- <source id="test-src" src="./test/test.mp3" type="audio/mpeg"> -->
+      </audio>
+    </main>
+    <footer>
+      <x-button onclick="this.closest('dialog').close()">
+        <x-label>关闭</x-label>
+      </x-button>
+    </footer>
+  </dialog>
+
+  <dialog id="waiting-bar" style="margin: auto;">
+    <br>
+    <x-throbber style="margin: auto;width: 2rem;height: 2rem;"></x-throbber>
+    <p style="text-align: center;">正在操作中，请耐心等待。</p>
+  </dialog>
+
+  
+
+  <!-- <x-notification style="z-index: 999;" id="notification" timeout="800"></x-notification> -->
+
+  <script src="src/js/utils.js"></script>
+  <script src="libs/jquery/jquery.min.js"></script>
+  <script>if (typeof module === 'object') { window.jQuery = window.$ = module.exports; };</script>
+  <script src="./libs/xel.min.js"></script>
+  <script src="src/js/render.js"></script>
+  <script src="src/js/editor.js"></script>
+  <script src="src/js/dataManager.js"></script>
+  <script src="src/js/logic.js"></script>
+</body>
+
+</html>

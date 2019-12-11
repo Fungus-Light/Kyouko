@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    --primary-color: rgb(23, 95, 153);
+    --secondary-color:rgb(23, 95, 153);
+    background-color: aliceblue;
+}
+
+.left-side{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    width: 49vw;
+    height: calc(93.5vh - 38px) ;
+    float: left;
+    overflow: scroll;
+    -webkit-user-select: none;
+}
+
+.mid-side{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    width: 0.5vh;
+    height: calc(93.5vh - 38px) ;
+    float: left;
+    background-color: rgb(84, 114, 160);
+}
+
+.right-side{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    width: 49.5vw;
+    height: calc(93.5vh - 38px) ;
+    float: left;
+}
+
+.footer{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    width: 100vw;
+    height: 6vh;
+    background-color: rgb(222, 229, 241);
+    float: left;
+    -webkit-user-select: none;
+}
+
+x-card{
+    background-color: aliceblue;
+    margin: 0;
+    display: inline;
+}
+
+x-card header{
+    background-color: rgb(178, 220, 248);
+    padding: 5px 5px;
+}
+
+x-card main{
+    padding: 10px;
+}
+
+#setting{
+    width: 50vw;
+    height: 100vh;
+    left: 0;
+    right: auto;
+    top: auto;
+    color: white;
+    background-color: aliceblue;
+    border-radius: 0 15px 15px 0;
+    opacity: 1;
+    border: 1px solid #264149;
+    padding: 10px 20px;
+}
+
+dialog::backdrop {
+    pointer-events: none;
+  }
+
+x-input{
+    margin: auto;
+    max-width:96%;
+}
+
+.oneline{
+    height: 1vh;
+}
