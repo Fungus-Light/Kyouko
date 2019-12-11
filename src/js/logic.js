@@ -465,10 +465,16 @@ $(".help-doc").click(()=>{
     ipcRenderer.send('opendoc');
 });
 
+$("#fork-me").click(()=>{
+    require('electron').shell.openExternal('https://github.com/Fungus-Light');
+});
+
 //'will=quit'
 ipcRenderer.on('will-quit', () => {
     document.getElementById("quit-warning").showModal();
 });
+
+
 
 function LoadContent() {
 
