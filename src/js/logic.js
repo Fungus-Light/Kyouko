@@ -222,7 +222,8 @@ $("#try-listen").click((e) => {
         if (fs.existsSync('./test/test.mp3')) {
             fs.unlinkSync('./test/test.mp3');
         }
-        let APP_ID = '17826281';
+
+        let APP_ID = config.baidu.appID;
         let API_KEY = config.baidu.appKey;
         let SECRET_KEY = config.baidu.secretKey;
         e.preventDefault();
