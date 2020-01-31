@@ -93,3 +93,46 @@ x-input{
 .oneline{
     height: 1vh;
 }
+
+.up-menu{
+    background-color: rgb(235, 238, 241);
+}
+
+.auto-center{
+    margin: auto;
+}
+
+.listen-bar{
+    background-color: aliceblue;
+    border-color: blueviolet; 
+}
+
+.new-content{
+    max-width: 96%;
+}
+
+.newItemwin{
+    margin: auto;
+    background-color: aliceblue;
+}
+
+.network{
+    --primary-color:rgb(17, 70, 114); 
+    float: right;
+}
+
+.fork-me{
+    color: rgb(138, 201, 226);
+}
+
+.help-doc{
+    --primary-color:rgb(17, 70, 114);
+}
+
+.hide-btn{
+    float:left;opacity:0;
+}
+
+.close-setting{
+    float:left;background-color: aliceblue;
+}

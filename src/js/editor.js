@@ -1,7 +1,7 @@
 let e_title = document.getElementById("e-title");
 let e_description = document.getElementById("e-description");
 let e_content = document.getElementById("e-content");
-let e_platform = document.getElementById("e-platform");
+//let e_platform = document.getElementById("e-platform");
 let e_speaker = GetElementById("e-speaker");
 let e_speed = GetElementById("e-speed");
 let e_tune = GetElementById("e-tune");
@@ -16,7 +16,7 @@ function EnableEditor() {
         e_title.contentEditable = true;
         EnableEdit(e_description);
         EnableEdit(e_content);
-        EnableEdit(e_platform);
+        //EnableEdit(e_platform);
         EnableEdit(e_speaker);
         EnableEdit(e_speed);
         EnableEdit(e_tune);
@@ -32,7 +32,7 @@ function DisableEditor() {
         e_title.contentEditable = false;
         DisableEdit(e_description);
         DisableEdit(e_content);
-        DisableEdit(e_platform);
+        //DisableEdit(e_platform);
         DisableEdit(e_speaker);
         DisableEdit(e_speed);
         DisableEdit(e_tune);
@@ -62,11 +62,9 @@ function SetEditItem(item, id) {
     e_title.innerText = _title;
     e_description.value = item.description;
     e_content.value = item.content;
-    e_platform.value = item.api;
+    //e_platform.value = item.api;
     e_speaker.value = item.speaker;
-
-    $('#e-platform x-menuitem').removeAttr("toggled");
-    $('#e-platform x-menuitem[value=\'' + item.api + '\']').attr("toggled", "true");
+    console.log(typeof item.speaker)
     $('#e-speaker x-menuitem').removeAttr("toggled");
     $('#e-speaker x-menuitem[value=\'' + item.speaker + '\']').attr("toggled", "true");
 
@@ -80,7 +78,7 @@ function SaveEditItem() {
         current.title = e_title.innerText;
         current.description = e_description.value;
         current.content = e_content.value;
-        current.api = e_platform.value;
+        //current.api = e_platform.value;
         current.speaker = e_speaker.value;
         current.speed = e_speed.value;
         current.tune = e_tune.value;

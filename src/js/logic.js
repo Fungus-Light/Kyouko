@@ -9,7 +9,6 @@ let config = {
     version: '0.0.1',
     currentFile: '',
     default: {
-        platform: null,
         speaker: null,
         speed: null,
         tune: null,
@@ -19,15 +18,8 @@ let config = {
         appID: "",
         appKey: "",
         secretKey: ""
-    },
-    youdao: {
-        appID: "",
-        secretKey: ""
-    },
-    Google: false
+    }
 };
-
-let isGoolgeOn = false;
 
 let currentPath = "";
 let currentProject = null;
@@ -97,16 +89,7 @@ function LoadSettings() {
         document.getElementById("baidu-app-id").value = config.baidu.appID;
         document.getElementById("baidu-app-key").value = config.baidu.appKey;
         document.getElementById("baidu-secret-key").value = config.baidu.secretKey;
-        document.getElementById("youdao-app-key").value = config.youdao.appID;
-        document.getElementById("youdao-secret-key").value = config.youdao.secretKey;
-        if (config.Google) {
-            document.getElementById("isGoogleOn").setAttribute("toggled", config.Google);
-        }
-        isGoolgeOn = config.Google;
-        console.log(document.getElementById("default-platform").value);
-        document.getElementById("default-platform").value = config.default.platform;
-        $('#default-platform x-menuitem').removeAttr("toggled");
-        $('#default-platform x-menuitem[value=\'' + config.default.platform + '\']').attr("toggled", "true");
+        
         $('#default-speaker x-menuitem').removeAttr("toggled");
         document.getElementById("default-speaker").value = config.default.speaker;
         $('#default-speaker x-menuitem[value=\'' + config.default.speaker + '\']').attr("toggled", "true");
@@ -122,10 +105,6 @@ function SaveSettings() {
     config.baidu.appID = document.getElementById("baidu-app-id").value;
     config.baidu.appKey = document.getElementById("baidu-app-key").value;
     config.baidu.secretKey = document.getElementById("baidu-secret-key").value;
-    config.youdao.appID = document.getElementById("youdao-app-key").value;
-    config.youdao.secretKey = document.getElementById("youdao-secret-key").value;
-    config.Google = isGoolgeOn;
-    config.default.platform = document.getElementById("default-platform").value;
     config.default.speaker = document.getElementById("default-speaker").value;
     config.default.speed = document.getElementById("default-speed").value;
     config.default.tune = document.getElementById("default-tune").value;
@@ -176,7 +155,7 @@ $("#newTextItem").click(() => {
     let _title = document.getElementById('new-title').value;
     let _des = document.getElementById('new-description').value;
     let _content = document.getElementById('new-content').value;
-    let newItem = new DataItem(_id, _title, _des, _content, config.default.platform, config.default.speaker, config.default.speed, config.default.tune, config.default.volum);
+    let newItem = new DataItem(_id, _title, _des, _content, config.default.speaker, config.default.speed, config.default.tune, config.default.volum);
     TextListData.push(newItem);
     SetEditItem(newItem, _id);
     console.log(TextListData);
@@ -217,10 +196,17 @@ $("#save-quit").click(()=>{
 
 $("#try-listen").click((e) => {
 
+    let tempPath = "";
+    if (__dirname.includes('asar')) {//ES6大法好
+        tempPath = path.join(process.cwd(), 'temp','test.mp3');
+    } else {
+        tempPath = path.join(__dirname, 'temp',"test.mp3");
+    }
+
     if (isOnline == true) {
 
-        if (fs.existsSync('./test/test.mp3')) {
-            fs.unlinkSync('./test/test.mp3');
+        if (fs.existsSync(tempPath)) {
+            fs.unlinkSync(tempPath);
         }
 
         let APP_ID = config.baidu.appID;
@@ -229,21 +215,27 @@ $("#try-listen").click((e) => {
         e.preventDefault();
         document.getElementById("waiting-bar").showModal();
         let client = new AipSpeechClient(APP_ID, API_KEY, SECRET_KEY);
-        client.text2audio('我是你哥哥,我和你都是你妈的儿子,你吼辣么大声干什么。你妈死了').then(function (result) {
+        client.text2audio('我和你都是你妈的儿子,你吼辣么大声干什么。你妈死了').then(function (result) {
             if (result.data) {
                 console.log(result);
-                fs.writeFileSync('./test/test.mp3', result.data);
+                fs.writeFileSync(tempPath, result.data);
                 document.getElementById("waiting-bar").close();
-                $("#test-player").attr('src', './test/test.mp3');
+                $("#test-player").attr('src', tempPath);
                 document.getElementById("test-player").load();
                 document.getElementById("listen-bar").showModal();
             } else {
                 // 服务发生错误
                 console.log(result);
+                document.getElementById("waiting-bar").close();
+                document.getElementById("sys-notification").innerHTML = "服务发生错误";
+                document.getElementById("sys-notification").opened = true;
             }
         }, function (err) {
             // 发生网络错误
             console.log(err);
+            document.getElementById("waiting-bar").close();
+            document.getElementById("sys-notification").innerHTML = "发生请求错误";
+            document.getElementById("sys-notification").opened = true;
         });
 
     } else {

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <x-menubar style="background-color: rgb(235, 238, 241);">
+  <x-menubar class="up-menu">
     <x-menuitem>
       <x-label>文件</x-label>
 
@@ -81,13 +81,6 @@
           </x-box>
         </x-button>
 
-        <!-- <x-button id="test-add" style="background-color: aliceblue;">
-          <x-box>
-            <x-icon name="add"></x-icon>
-            <x-label>新段落(Test)</x-label>
-          </x-box>
-        </x-button> -->
-
         <x-button disabled style="background-color: aliceblue;opacity: 0;">
         </x-button>
         <x-button id="refresh-it-btn" style="background-color: aliceblue;">
@@ -110,7 +103,8 @@
     <div class="mid-side"></div>
     <!--right-->
     <div class="right-side">
-      <h2 id="e-title" contenteditable=false style="margin: 10px ;color: rgb(23, 95, 153);-webkit-user-select: none;">第一段</h2>
+      <h2 id="e-title" contenteditable=false style="margin: 10px ;color: rgb(23, 95, 153);-webkit-user-select: none;">
+        第一段</h2>
       <hr>
       <div class="right-content" style="overflow: scroll;height: 75%;">
         <h4 style="font-weight: bold;color: rgb(23, 95, 153);margin: 5px;-webkit-user-select: none;">简述</h4>
@@ -125,37 +119,27 @@
 
         <div style="width:90%;float: left; padding: 1vw;">
           <div style="width: 2%;float:left;opacity: 0;">1</div>
+
           <div style="width: 25%;float: left;">
-            <x-select id="e-platform" skin="flat" disabled>
+            
+            <div style="width: 30%;float:left;-webkit-user-select: none;">讲述人 </div>
+            <div style="width: 2%;float:left;opacity: 0;">1</div>
+
+            <x-select style="float: left;width: 68%;" id="e-speaker" skin="flat" disabled>
               <x-menu>
-                <x-menuitem value="0">
-                  <x-label>平台选择</x-label>
-                </x-menuitem>
-                <hr>
-                <x-menuitem value="1" toggled>
-                  <x-label>百度</x-label>
+
+                <x-menuitem value='1' toggled>
+                  <x-label>度小宇</x-label>
                 </x-menuitem>
 
-                <x-menuitem value="2">
-                  <x-label>有道</x-label>
-                </x-menuitem>
-              </x-menu>
-            </x-select>
-          </div>
-          <div style="width: 25%;float: left;">
-            <x-select id="e-speaker" skin="flat" disabled>
-              <x-menu>
-                <x-menuitem value="0">
-                  <x-label>声音选择</x-label>
-                </x-menuitem>
-                <hr>
-                <x-menuitem value="1" toggled>
-                  <x-label>男</x-label>
+                <x-menuitem value='0'>
+                  <x-label>度小美</x-label>
                 </x-menuitem>
 
-                <x-menuitem value="2">
-                  <x-label>女</x-label>
+                <x-menuitem value='106'>
+                  <x-label>度博文</x-label>
                 </x-menuitem>
+
               </x-menu>
             </x-select>
           </div>
@@ -248,7 +232,7 @@
       <!--设置栏位-->
       <dialog id="setting">
 
-          <x-notification id="notification" timeout="1000"></x-notification>
+        <x-notification id="notification" timeout="1000"></x-notification>
         <h3 style="margin: 10px ;color: rgb(23, 95, 153);">配置项</h3>
         <hr>
         <!--具体设置区域-->
@@ -267,70 +251,29 @@
           </x-input>
           <br>
 
-          <!-- <h4 style="font-weight: bold;color: rgb(23, 95, 153);margin: 5px;">Azure语音合成API</h4>
-          <x-input skin="flat">
-            <x-label>app-key</x-label>
-          </x-input>
-          <x-input skin="flat">
-            <x-label>securety-key</x-label>
-          </x-input>
-          <br> -->
-
-          <h4 style="font-weight: bold;color: rgb(23, 95, 153);margin: 5px;">有道云智能语音合成服务API</h4>
-          <x-input skin="flat" id="youdao-app-key">
-            <x-label>app-key</x-label>
-          </x-input>
-          <x-input skin="flat" id="youdao-secret-key">
-            <x-label>securety-key</x-label>
-          </x-input>
-          <br>
-
-          <h4 style="font-weight: bold;color: rgb(23, 95, 153);margin: 5px;">谷歌语音(无需梯子)，基于浏览器</h4>
-          <x-box style="margin: 0 2vw;">
-            <x-switch id="isGoogleOn"></x-switch>
-            <x-label for="isGoogleOn" id="label-1">
-              <x-box vertical>
-                <span style="color: rgb(23, 95, 153);font-weight: bold;">启用（不稳定）</span>
-              </x-box>
-            </x-label>
-          </x-box>
-          <br>
-
           <h4 style="font-weight: bold;color: rgb(23, 95, 153);margin: 5px;">默认参数</h4>
           <div style="width:90%;float: left; padding: 1vw;">
             <div style="width: 2%;float:left;opacity: 0;">1</div>
-            <div style="width: 25%;float: left;">
-              <x-select skin="flat" id="default-platform">
-                <x-menu>
-                  <x-menuitem value="0">
-                    <x-label>平台选择</x-label>
-                  </x-menuitem>
-                  <hr>
-                  <x-menuitem value="1" toggled>
-                    <x-label>百度</x-label>
-                  </x-menuitem>
+            <div style="width: 10%;float:left; color: rgb(23, 95, 153); font-weight: bold;">讲述人 </div>
+            <div style="width: 2%;float:left;opacity: 0;">1</div>
 
-                  <x-menuitem value="2">
-                    <x-label>谷歌</x-label>
-                  </x-menuitem>
-                </x-menu>
-              </x-select>
-            </div>
-
-            <div style="width: 25%;float: left;">
+            <!--度小宇=1，度小美=0，度逍遥=3，度丫丫=4-->
+            <!--度博文=106，度小童=110，度小萌=111，度米朵=103，度小娇=5-->
+            <div style="width: 50%;float: left;">
               <x-select skin="flat" id="default-speaker">
                 <x-menu>
-                  <x-menuitem value="0">
-                    <x-label>声音选择</x-label>
-                  </x-menuitem>
-                  <hr>
-                  <x-menuitem value="1" toggled>
-                    <x-label>男</x-label>
+                  <x-menuitem value='1' toggled>
+                    <x-label>度小宇</x-label>
                   </x-menuitem>
 
-                  <x-menuitem value="2">
-                    <x-label>女</x-label>
+                  <x-menuitem value='0'>
+                    <x-label>度小美</x-label>
                   </x-menuitem>
+
+                  <x-menuitem value='106'>
+                    <x-label>度博文</x-label>
+                  </x-menuitem>
+
                 </x-menu>
               </x-select>
             </div>
@@ -373,23 +316,20 @@
         <hr>
 
         <div class="btn-group" style="margin: auto;padding: 10px;vertical-align: auto;" centered>
+
           <x-button id="save-settings" style="float:left;background-color: aliceblue;">
             <x-box>
               <x-icon name="save"></x-icon>
               <x-label>保存设置</x-label>
             </x-box>
           </x-button>
-          <x-button disabled style="float:left;opacity:0;">
+
+          <x-button disabled class="hide-btn">
           </x-button>
-          <x-button style="float:left;background-color: aliceblue;">
-            <x-box>
-              <x-icon name="replay"></x-icon>
-              <x-label>恢复默认</x-label>
-            </x-box>
+
+          <x-button disabled class="hide-btn">
           </x-button>
-          <x-button disabled style="float:left;opacity:0;">
-          </x-button>
-          <x-button onclick="this.closest('dialog').close()" style="float:left;background-color: aliceblue;">
+          <x-button onclick="this.closest('dialog').close()" class="close-setting">
             <x-box>
               <x-icon name="close"></x-icon>
               <x-label>关闭设置</x-label>
@@ -405,18 +345,18 @@
       <dialog style="margin: auto;background-color: aliceblue;">
         <main>
           <div>
-              <img width="50px" height="50px" style="float: left;" src="./logo.ico">
-              <p style="float: left;">Kyouko(响子)是一款整合了多家在线语音合成api的辅助应用，你可以用来为你的视频等生成配音方案。</p>
+            <img width="50px" height="50px" style="float: left;" src="./logo.ico">
+            <p style="float: left;">Kyouko(响子)是一款整合了百度在线语音合成api的辅助应用，你可以用来为你的视频等生成配音方案。</p>
           </div>
-          
+
           <br>
-          <x-button style="--primary-color:rgb(17, 70, 114);" class="help-doc">
+          <x-button class="help-doc" class="help-doc">
             <x-label>打开帮助文档</x-label>
           </x-button>
           <br>
           <p>作者：Fungus-Light</p>
           <br>
-          <a id="fork-me" style="color: rgb(138, 201, 226);" href="#!">去关注我，催促摸鱼的我填各种坑。</a>
+          <a id="fork-me" class="fork-me" href="#!">去关注我，催促摸鱼的我填各种坑。</a>
           <br>
           <p id="version-info">当前版本号：0.0.1</p>
         </main>
@@ -429,7 +369,7 @@
     </x-button>
 
     <!--网络状况测试显示按钮-->
-    <x-button skin="flat" style="--primary-color:rgb(17, 70, 114); float: right;">
+    <x-button skin="flat" class="network">
       <x-icon id="online-icon" name="wifi"></x-icon>
       <x-icon id="offline-icon" name="cancel" style="display: none;"></x-icon>
     </x-button>
@@ -438,16 +378,16 @@
 
   <x-notification id="sys-notification" timeout="1500"></x-notification>
 
-  <dialog id="newItemwin" style="margin: auto;background-color: aliceblue;">
-    <main style="margin: 0;">
+  <dialog id="newItemwin" class="newItemwin">
+    <main class="auto-center">
       <p>请输入你的标题</p>
       <x-input id="new-title"></x-input>
       <p>请输入你的简述</p>
       <x-input id="new-description"></x-input>
       <p>请输入你的内容</p>
-      <x-textarea id="new-content" style="max-width: 96%; margin:auto"></x-textarea>
+      <x-textarea id="new-content" class="auto-center new-content"></x-textarea>
     </main>
-    <footer style="margin: auto;">
+    <footer class="auto-center">
       <x-button id="newTextItem">
         <x-label>提交</x-label>
       </x-button>
@@ -458,7 +398,7 @@
     </footer>
   </dialog>
 
-  <dialog id="quit-warning" style="margin: auto;">
+  <dialog id="quit-warning" class="auto-center">
     <main>
       <h3>保存当前进度吗？</h3>
       <p>未保存的进度可能丢失。</p>
@@ -481,29 +421,28 @@
 
   </dialog>
 
-  <dialog id="FileExist-warning" style="margin: auto;">
-      <main>
-        <h3>保存当前进度吗？</h3>
-        <p>当前有打开的文件！未保存的进度可能丢失。</p>
-      </main>
-      <footer>
-        <x-buttons id="continue-group" param="-1">
-          <x-button id="continue-save">
-            <x-label>保存继续</x-label>
-          </x-button>
-          <x-button id="continue-nosave">
-            <x-label>不保存继续</x-label>
-          </x-button>
-          <x-button onclick="this.closest('dialog').close();">
-            <x-label>取消</x-label>
-          </x-button>
-        </x-buttons>
+  <dialog id="FileExist-warning" class="auto-center">
+    <main>
+      <h3>保存当前进度吗？</h3>
+      <p>当前有打开的文件！未保存的进度可能丢失。</p>
+    </main>
 
-
-      </footer>
+    <footer>
+      <x-buttons id="continue-group" param="-1">
+        <x-button id="continue-save">
+          <x-label>保存继续</x-label>
+        </x-button>
+        <x-button id="continue-nosave">
+          <x-label>不保存继续</x-label>
+        </x-button>
+        <x-button onclick="this.closest('dialog').close();">
+          <x-label>取消</x-label>
+        </x-button>
+      </x-buttons>
+    </footer>
   </dialog>
 
-  <dialog id="listen-bar" style="margin: auto;background-color: aliceblue; border-color: blueviolet; ">
+  <dialog id="listen-bar" class="auto-center listen-bar">
     <main>
       <p>试听效果</p>
       <br>
@@ -518,15 +457,11 @@
     </footer>
   </dialog>
 
-  <dialog id="waiting-bar" style="margin: auto;">
+  <dialog id="waiting-bar" class="auto-center">
     <br>
     <x-throbber style="margin: auto;width: 2rem;height: 2rem;"></x-throbber>
     <p style="text-align: center;">正在操作中，请耐心等待。</p>
   </dialog>
-
-  
-
-  <!-- <x-notification style="z-index: 999;" id="notification" timeout="800"></x-notification> -->
 
   <script src="src/js/utils.js"></script>
   <script src="libs/jquery/jquery.min.js"></script>
