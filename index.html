@@ -208,7 +208,7 @@
         </x-button>
         <x-button disabled style="float:left;opacity:0;">
         </x-button>
-        <x-button style="float:left;background-color: aliceblue;">
+        <x-button id="export-audio" style="float:left;background-color: aliceblue;">
           <x-box>
             <x-icon name="save"></x-icon>
             <x-label>生成音频</x-label>
@@ -451,7 +451,7 @@
       </audio>
     </main>
     <footer>
-      <x-button onclick="this.closest('dialog').close()">
+      <x-button onclick="document.getElementById('test-player').pause();this.closest('dialog').close()">
         <x-label>关闭</x-label>
       </x-button>
     </footer>
@@ -470,6 +470,7 @@
   <script src="src/js/render.js"></script>
   <script src="src/js/editor.js"></script>
   <script src="src/js/dataManager.js"></script>
+  <script src="src/js/system.js"></script>
   <script src="src/js/logic.js"></script>
 </body>
 

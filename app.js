@@ -50,7 +50,7 @@ function createWindow() {
   });
 
   let winMenu = Menu.buildFromTemplate(MenuTemplate);
-  Menu.setApplicationMenu(winMenu);
+  //Menu.setApplicationMenu(winMenu);
 
   // 加载index.html文件
   win.loadFile('index.html');
