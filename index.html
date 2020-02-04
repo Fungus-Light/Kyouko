@@ -45,6 +45,23 @@
     </x-menuitem>
 
     <x-menuitem>
+      <x-label>导出</x-label>
+
+      <x-menu>
+        <x-menuitem id="ex-all">
+          <x-icon name="album"></x-icon>
+          <x-label>导出全部音频</x-label>
+        </x-menuitem>
+
+        <x-menuitem id="ex-txt">
+          <x-icon name="comment"></x-icon>
+          <x-label>导出txt</x-label>
+        </x-menuitem>
+
+      </x-menu>
+    </x-menuitem>
+
+    <x-menuitem>
       <x-label>帮助</x-label>
 
       <x-menu>
@@ -67,6 +84,8 @@
       </x-menu>
     </x-menuitem>
 
+
+
   </x-menubar>
 
   <!--left-->
@@ -81,8 +100,13 @@
           </x-box>
         </x-button>
 
-        <x-button disabled style="background-color: aliceblue;opacity: 0;">
+        <x-button id="import-text" style="background-color: aliceblue;">
+          <x-box>
+            <x-icon name="input"></x-icon>
+            <x-label>导入txt文本</x-label>
+          </x-box>
         </x-button>
+
         <x-button id="refresh-it-btn" style="background-color: aliceblue;">
           <x-box>
             <x-icon name="refresh"></x-icon>
@@ -121,7 +145,7 @@
           <div style="width: 2%;float:left;opacity: 0;">1</div>
 
           <div style="width: 25%;float: left;">
-            
+
             <div style="width: 30%;float:left;-webkit-user-select: none;">讲述人 </div>
             <div style="width: 2%;float:left;opacity: 0;">1</div>
 
@@ -358,7 +382,7 @@
           <br>
           <a id="fork-me" class="fork-me" href="#!">去关注我，催促摸鱼的我填各种坑。</a>
           <br>
-          <p id="version-info">当前版本号：0.0.1</p>
+          <p id="version-info">当前版本号：0.1.0a</p>
         </main>
         <footer>
           <x-button onclick="this.closest('dialog').close()">
@@ -443,11 +467,10 @@
   </dialog>
 
   <dialog id="listen-bar" class="auto-center listen-bar">
-    <main>
+    <main id="player-bar">
       <p>试听效果</p>
       <br>
       <audio id="test-player" controls style="width: 60%;margin: auto;">
-        <!-- <source id="test-src" src="./test/test.mp3" type="audio/mpeg"> -->
       </audio>
     </main>
     <footer>
@@ -461,6 +484,30 @@
     <br>
     <x-throbber style="margin: auto;width: 2rem;height: 2rem;"></x-throbber>
     <p style="text-align: center;">正在操作中，请耐心等待。</p>
+  </dialog>
+
+  <dialog id='export-all-bar' class="auto-center">
+    <br>
+    <div style="width: 80%;margin: auto;">
+      <p>输出中。。。</p>
+      <x-progressbar id="export-value" ></x-progressbar>
+    </div>
+  </dialog>
+
+  <dialog id='export-txt-bar' class="auto-center">
+    <br>
+    <div style="width: 80%;margin: auto;">
+      <p>请根据需要划分每一行</p>
+      <x-textarea id="ex-txt-value" style="max-height: 40vh;"></x-textarea>
+    </div>
+    <footer>
+      <x-button id="ex-txt-confirm">
+        <x-label>导出</x-label>
+      </x-button>
+      <x-button onclick="$('#ex-txt-value').value='';this.closest('dialog').close()">
+        <x-label>关闭</x-label>
+      </x-button>
+    </footer>
   </dialog>
 
   <script src="src/js/utils.js"></script>

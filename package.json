@@ -1,6 +1,6 @@
 {
   "name": "kyouko",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "the Machine video dubbing solution",
   "main": "app.js",
   "scripts": {
@@ -13,6 +13,7 @@
     "electron": "^6.0.12"
   },
   "dependencies": {
+    "async": "^3.1.1",
     "axios": "^0.19.0",
     "baidu-aip-sdk": "^2.4.4"
   },

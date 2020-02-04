@@ -81,6 +81,9 @@ function InitPage() {
 }
 
 function RefreshList(){
+    for(let i=0;i<TextListData.length;i++){
+        TextListData[i].id=i;
+    }
     ClearTextList();
     for(let i=0;i<TextListData.length;i++){
         let el=TextListData[i];

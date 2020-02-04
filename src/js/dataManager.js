@@ -26,7 +26,7 @@ let TextListData=new Array();
 
 
 function InitDefaultLine(){
-    let test1=new DataItem(0,"测试文本","这是一段测试文本，您可以编辑和实验这个文本","Kyouko是一款集成了多家语音合成api的配音辅助工具，可以帮助您为您的视频生成较为自然的配音。",'1',5,5,5);
+    let test1=new DataItem(0,"测试文本","这是一段测试文本，您可以编辑和实验这个文本","Kyouko是一款集成了百度语音合成api的配音辅助工具，可以帮助您为您的视频生成较为自然的配音。",'1',5,5,5);
     TextListData.push(test1);
     RefreshList();
 }

@@ -1,6 +1,7 @@
 const _version_ = "0.0.1a";
 
 const { app, BrowserWindow, Menu } = require('electron');
+app.commandLine.appendSwitch("--disable-http-cache");
 const { ipcMain } = require('electron');
 const shell = require("electron").shell;
 const { dialog } = require('electron');
@@ -113,7 +114,7 @@ ipcMain.on('opendoc', () => {
     helpdoc.on('close',()=>{
       helpdoc=null;
     });
-    helpdoc.loadFile('./DOCs/doc.html');
+    helpdoc.loadFile('./DOCs/guide.html');
     helpdoc.show();
   }
 

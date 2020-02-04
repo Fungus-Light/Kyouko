@@ -1,3 +1,7 @@
+function sleep(n) { //n表示的毫秒数
+    var start = new Date().getTime();
+    while (true) if (new Date().getTime() - start > n) break;
+}
 function LoadSettings() {
     console.log(process.execPath);
     console.log(__dirname);
@@ -259,7 +263,7 @@ function ExportAudio() {
             let APP_ID = config.baidu.appID;
             let API_KEY = config.baidu.appKey;
             let SECRET_KEY = config.baidu.secretKey;
-            
+
             document.getElementById("waiting-bar").showModal();
             let client = new AipSpeechClient(APP_ID, API_KEY, SECRET_KEY);
             client.text2audio(toSay.text, {
@@ -270,11 +274,12 @@ function ExportAudio() {
             }).then(function (result) {
                 if (result.data) {
                     console.log(result);
-                    fs.writeFile(path, result.data,(err)=>{
+                    fs.writeFile(path, result.data, (err) => {
                         document.getElementById("waiting-bar").close();
-                        if(err){
+                        if (err) {
                             SystemNotice('导出失败')
-                        }else{
+                        } else {
+                            require('electron').shell.showItemInFolder(path)
                             SystemNotice('导出成功')
                         }
                     });
@@ -297,3 +302,5 @@ function ExportAudio() {
 
     }
 }
+
+

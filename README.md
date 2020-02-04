@@ -1,4 +1,5 @@
 # Kyouko 响子
+
  the Machine video dubbing solution
 
 机器视频配音助手
@@ -14,6 +15,8 @@
 ```
 npm install
 ```
+
+对于中国用户，推荐使用cnpm
 
 3、在终端中运行以下命令来启动 。Run the following command in the terminal to start.
 
